@@ -1,6 +1,12 @@
 #include <iostream>
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+  cout << "Enter an integer: ";
+  int num;
+  cin >> num;
+  cout << "The cube of " << num << " is " << num * num * num << endl;
+  return 0;
 }
+
+
