@@ -3,4 +3,4 @@ project(SPA1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(SPA1 main.cpp)
+add_executable(SPA1 1fluids.cpp)
