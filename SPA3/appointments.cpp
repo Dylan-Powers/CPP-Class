@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : appointments.cpp
-// Author      : TODO: fill in name
+// Author      : Dylan Powers
 //============================================================================
 
 #include "appointments.h"
@@ -8,29 +8,32 @@
 #include <iostream>
 // add other includes as needed here, but appointments.h must be the FIRST include
 
-// TODO: implement function before()
+bool before(Appointment a, Appointment b) {
+  return earlier(a.date(), b.date());
+}
+
+Appointment::Appointment(Date date, std::string description) : _date{date} {
+  char letter = description[0];
+  while (letter == ' ') {
+    description.erase(0, 1);
+    letter = description[0];
+  }
+
+  letter = description[description.length() - 1];
+  while (letter == ' ') {
+    description.pop_back();
+    letter = description[description.length() - 1];
+  }
+
+  _description = description;
+}
 
 
-// TODO: implement the version of Appointment::Appointment that takes
-//       a date and a description. This constructor needs to trim all
-//       leading and trailing spaces from the description. You can use
-//       .erase(0, 1) to remove the first character from a string if it is
-//       a space (until some character is found that's not a space) and
-//       then use .pop_back() to remove the last character until you reach
-//       some character that is not a space. You can assume the description
-//       has at least one letter in it.
-
-
-void Schedule::add(Appointment new_appointment)
-{
+void Schedule::add(Appointment new_appointment) {
   int pos = 0;
-
-  // TODO: set pos to the position new_appointment would appear in
-  //       appointments[]. That is, write a while loop that terminates when
-  //       pos >= numAppointments or when
-  //       before(appointments[pos], new_appointment) is false
-  while (
-          ++pos;
+  while (pos < numAppointments && before(appointments[pos], new_appointment)) {
+    ++pos;
+  }
 
   // do not change any of the rest of this method
   for(int i = numAppointments; i > pos; --i)
@@ -42,5 +45,8 @@ void Schedule::add(Appointment new_appointment)
   ++numAppointments;
 }
 
-// TODO: implement write_to_cout so it writes all of the appointments,
-//       one to a line
+void Schedule::write_to_cout() const {
+  for (int i = 0; i < numAppointments; ++i) {
+    std::cout << appointments[i].toString() << std::endl;
+  }
+}

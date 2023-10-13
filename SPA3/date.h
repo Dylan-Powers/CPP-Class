@@ -1,10 +1,30 @@
 //============================================================================
 // Name        : date.h
-// Author      : TODO: fill in name
+// Author      : Dylan Powers
 //============================================================================
 
-// TODO: add definitions and declarations so that date.cpp compiles
-//       This includes code (#ifndef) to ensure class definitions appear just
-//       once and including any headers for types that Date depends on.
-//       Make sure you include appropriate documentation - see your class
-//       style guide.
+#ifndef DATE_H
+#define DATE_H
+
+#include <string>
+
+class Date {
+public:
+  Date(int month, int day, int year);
+  Date();
+
+  [[nodiscard]] int month() const;
+  [[nodiscard]] int day() const;
+  [[nodiscard]] int year() const;
+
+  [[nodiscard]] std::string toString() const;
+
+private:
+  int _month;
+  int _day;
+  int _year;
+};
+
+bool earlier(Date d1, Date d2);
+
+#endif

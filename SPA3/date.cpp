@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : date.cpp
-// Author      : TODO: enter name
+// Author      : Dylan Powers
 //============================================================================
 
 //
@@ -29,8 +29,7 @@ int Date::year() const {
   return _year;
 }
 
-string Date::toString() const
-{
+string Date::toString() const {
   // ostringstreams provide an cout-like interface but store the results
   //   in a std:string instead of files; this convert data into a string
   ostringstream formatted;
@@ -44,11 +43,18 @@ string Date::toString() const
   return formatted.str();
 }
 
-bool earlier(Date d1, Date d2)
-{
-  // TODO: implement this; d1 is earlier than d2 if d1's year is earlier.
-  //       If the years are the same, check months, and if the months
-  //       are the same check the days.
+bool earlier(Date d1, Date d2) {
+  if (d1.year() < d2.year()) {
+    return true;
+  } else if (d1.year() == d2.year()) {
+    if (d1.month() < d2.month()) {
+      return true;
+    } else if (d1.month() == d2.month()) {
+      if (d1.day() < d2.day()) {
+        return true;
+      }
+    }
+  }
 
-
+  return false;
 }

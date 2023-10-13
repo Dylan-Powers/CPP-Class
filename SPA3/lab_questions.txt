@@ -1,0 +1,11 @@
+What did you learn from doing this lab?
+
+I was reminded how you can use methods outside of a class and how they can be useful.
+
+What did you find challenging about the lab?
+
+Not much.
+
+What would you recommend changing if this lab is reused in future years?
+
+If the goal is for us to learn about classes, we should be forced to do more on our own. I felt very handheld throughout this lab.

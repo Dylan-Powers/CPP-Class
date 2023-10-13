@@ -1,11 +1,13 @@
 //============================================================================
 // Name        : appointments.h - appointments and a schedule (a collection
 //               of appointments)
-// Author      : TODO: enter name
+// Author      : Dylan Powers
 //============================================================================
 
-// TODO: add code (#ifndef...) to ensure classes included just once
-//       and to make std::string a legal type
+#ifndef APPOINTMENTS_H
+#define APPOINTMENTS_H
+
+#include "date.h"
 
 // Appointment: store an appointment as a date and a description
 class Appointment
@@ -14,9 +16,7 @@ public:
     Appointment(Date date, std::string description);
 
     // construct an appointment on 0/0/0 with an empty description
-    Appointment() {
-      // TODO: add code here - IF NEEDED - to make sure the constructor works
-    }
+    Appointment() : _date{Date()}, _description{""} {}
 
     Date date() const { return _date; }
 
@@ -58,3 +58,5 @@ private:
     int   numAppointments;                      // do not change!
     Appointment appointments[MAX_APPOINTMENTS]; // do not change!
 };
+
+#endif
