@@ -28,6 +28,8 @@ bool Robot::move(Direction direction) {
       return xLocation < Map::WIDTH - 1 && xLocation++;
     case Direction::WEST:
       return xLocation > 0 && xLocation--;
+    default:
+      return false;
   }
 }
 
