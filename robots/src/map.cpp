@@ -40,10 +40,13 @@ void Map::load() {
 }
 
 void Map::write() {
+  cout << "+--------------------+" << endl;
   for (int i = 0; i < HEIGHT; i++) {
+    cout << "|";
     for (int k = 0; k < WIDTH; ++k) {
       cout << cells[k][i]->display();
     }
-    cout << endl;
+    cout << "|" << endl;
   }
+  cout << "+--------------------+" << endl;
 }

@@ -15,8 +15,8 @@
 // Add other methods and data as needed.
 class Map {
 public:
-  static const int WIDTH = 10;
-  static const int HEIGHT = 20;
+  static const int WIDTH = 20;
+  static const int HEIGHT = 10;
 
   // initialize empty map
   Map();
