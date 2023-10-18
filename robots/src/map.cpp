@@ -21,16 +21,17 @@ void Map::load() {
   getline(cin, line);
   for (int i = 1; i < HEIGHT - 1; i++) {
     getline(cin, line);
-    for (int k = 0; k < line.length(); ++k) {
-      switch (line.at(k)) {
+    for (unsigned k = 0; k < line.length(); ++k) {
+      int signed_k = static_cast<int>(k);
+      switch (line.at(signed_k)) {
         case '#':
-          cells[k][i] = new MapCell(k, i, MapCell::CellType::PIT);
+          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::PIT);
           break;
         case '*':
-          cells[k][i] = new MapCell(k, i, MapCell::CellType::GOLD);
+          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::GOLD);
           break;
         case 'O':
-          cells[k][i] = new MapCell(k, i, MapCell::CellType::ROBOT);
+          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::ROBOT);
           break;
         default:
           break;
