@@ -17,9 +17,9 @@ Map::Map() {
 
 void Map::load() {
   string line;
-  // gets rid of the top line
+  // Flushes the top line from the input
   getline(cin, line);
-  for (int i = 1; i < HEIGHT - 1; i++) {
+  for (int i = 1; i < HEIGHT + 1; i++) {
     getline(cin, line);
     for (unsigned k = 0; k < line.length(); ++k) {
       int signed_k = static_cast<int>(k);
@@ -38,6 +38,8 @@ void Map::load() {
       }
     }
   }
+  // Flushes the bottom line from the input
+  getline(cin, line);
 }
 
 void Map::write() {
