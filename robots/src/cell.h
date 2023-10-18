@@ -15,10 +15,9 @@
 // feel free to add/remove as needed.
 class MapCell {
 public:
-  static const char EMPTY_CHAR = ' ';
   static const char PIT_CHAR = '#';
   static const char GOLD_CHAR = '*';
-  static const char ROBOT_CHAR = 'O';
+  static const char ROBOT_CHAR = 'R';
 
   enum class CellType {
       EMPTY = 0,
@@ -28,6 +27,7 @@ public:
   };
 
   MapCell(int x, int y, CellType type);
+  MapCell(int x, int y, CellType type, char emptyChar);
   // true if pit at this location
   bool hasPit();
   // true if gold at this location
@@ -47,6 +47,7 @@ public:
 private:
   int xLocation, yLocation;
   CellType cellType;
+  char emptyChar;
   bool hasRobot;
 };
 

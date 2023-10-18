@@ -19,21 +19,25 @@ void Map::load() {
   string line;
   // Flushes the top line from the input
   getline(cin, line);
-  for (int i = 1; i < HEIGHT + 1; i++) {
+  for (int i = 0; i < HEIGHT; i++) {
     getline(cin, line);
     for (unsigned k = 0; k < line.length(); ++k) {
       int signed_k = static_cast<int>(k);
-      switch (line.at(signed_k)) {
+      char character = line.at(signed_k);
+      switch (character) {
         case '#':
           cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::PIT);
           break;
         case '*':
           cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::GOLD);
           break;
-        case 'O':
-          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::ROBOT);
+        case ' ':
+          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::EMPTY);
+          break;
+        case '|':
           break;
         default:
+          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::EMPTY, character);
           break;
       }
     }

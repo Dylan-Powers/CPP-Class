@@ -6,12 +6,19 @@
 
 #include "cell.h"
 
-MapCell::MapCell(int x, int y, CellType type) {
-  xLocation = x;
-  yLocation = y;
-  cellType = type;
-  hasRobot = false;
-}
+MapCell::MapCell(int x, int y, CellType type) :
+    xLocation(x),
+    yLocation(y),
+    cellType(type),
+    emptyChar(' '),
+    hasRobot(type == CellType::ROBOT) {}
+
+MapCell::MapCell(int x, int y, MapCell::CellType type, char emptyChar) :
+    xLocation(x),
+    yLocation(y),
+    cellType(type),
+    emptyChar(emptyChar),
+    hasRobot(type == CellType::ROBOT) {}
 
 bool MapCell::hasPit() {
   return cellType == CellType::PIT;
@@ -37,7 +44,7 @@ char MapCell::display() {
   } else if (hasGold()) {
     return GOLD_CHAR;
   } else {
-    return EMPTY_CHAR;
+    return emptyChar;
   }
 }
 
