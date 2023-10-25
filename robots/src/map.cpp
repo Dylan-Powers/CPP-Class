@@ -21,7 +21,7 @@ void Map::load() {
   getline(cin, line);
   for (int i = 0; i < HEIGHT; i++) {
     getline(cin, line);
-    for (int k = 0; k < line.length() - 2; ++k) {
+    for (unsigned k = 0; k < line.length() - 2; ++k) {
       char character = line.at(k + 1);
       switch (character) {
         case '#':
