@@ -54,8 +54,10 @@ char MapCell::display() {
 
 void MapCell::enter() {
   hasRobot = true;
+  cellType = CellType::ROBOT;
 }
 
 void MapCell::vacate() {
   hasRobot = false;
+  cellType = CellType::EMPTY;
 }
