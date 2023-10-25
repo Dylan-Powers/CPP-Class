@@ -5,6 +5,7 @@
  */
 
 #include "robot.h"
+#include "map.h"
 using namespace std;
 
 Robot::Robot(Map* map, int startx, int starty) :

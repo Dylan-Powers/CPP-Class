@@ -6,9 +6,10 @@
 #ifndef ROBOT_H_
 #define ROBOT_H_
 
-#include "map.h"
 #include <iostream>
 #include <string>
+
+class Map;
 
 // A robot which lives on a map at a particular x and y coordinate.
 class Robot {
