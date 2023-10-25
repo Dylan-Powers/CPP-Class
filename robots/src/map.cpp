@@ -21,7 +21,7 @@ void Map::load() {
   getline(cin, line);
   for (int i = 0; i < HEIGHT; i++) {
     getline(cin, line);
-    for (int k = 0; k < line.length() - 1; ++k) {
+    for (int k = 0; k < line.length() - 2; ++k) {
       char character = line.at(k + 1);
       switch (character) {
         case '#':
@@ -32,8 +32,6 @@ void Map::load() {
           break;
         case ' ':
           cells[k][i] = new MapCell(k, i, MapCell::CellType::EMPTY);
-          break;
-        case '|':
           break;
         default:
           cells[k][i] = new MapCell(k, i, MapCell::CellType::EMPTY, character);
