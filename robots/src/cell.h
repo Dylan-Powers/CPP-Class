@@ -38,7 +38,6 @@ public:
   // is this location occupied by something that the robot
   //   cannot move over?
   bool occupied();
-  bool isOutOfBounds();
   // return the character to display for this location
   char display();
   // robot enters location

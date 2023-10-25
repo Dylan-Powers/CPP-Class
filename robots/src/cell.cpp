@@ -41,11 +41,6 @@ bool MapCell::occupied() {
   return hasRobot || hasPit();
 }
 
-bool MapCell::isOutOfBounds() {
-  return xLocation < 0 || xLocation >= Map::WIDTH ||
-         yLocation < 0 || yLocation >= Map::HEIGHT;
-}
-
 char MapCell::display() {
   if (hasRobot) {
     return ROBOT_CHAR;
