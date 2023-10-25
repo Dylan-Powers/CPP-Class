@@ -5,6 +5,7 @@
  */
 
 #include "cell.h"
+#include "map.h"
 
 MapCell::MapCell(int x, int y, CellType type) :
     xLocation(x),
@@ -38,6 +39,11 @@ void MapCell::removeGold() {
 
 bool MapCell::occupied() {
   return hasRobot || hasPit();
+}
+
+bool MapCell::isOutOfBounds() {
+  return xLocation < 0 || xLocation >= Map::WIDTH ||
+         yLocation < 0 || yLocation >= Map::HEIGHT;
 }
 
 char MapCell::display() {
