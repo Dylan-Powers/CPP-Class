@@ -12,44 +12,33 @@ Robot::Robot(Map* map, int startx, int starty) :
     location(new Location{startx, starty}),
     gold(0),
     map(map) {
-  map->moveRobot(*location);
+  MapCell* cell = map->getCell(location);
+  moveToCell(cell, cell);
 }
 
 void Robot::displayStatus() const {
   cout << "Robot at " << location->x << ", " << location->y << " ("
-       << gold << " gold)" << endl;
+       << gold << " gold)";
 }
 
 bool Robot::move(Direction direction) {
   switch (direction) {
     case Direction::NORTH:
-      if (location->y > 0) {
-        location->y--;
-        map->moveRobot(*location);
-        return true;
-      }
-      return false;
+      return moveToCell(
+              map->getCell(location),
+              map->getCell(new Location{location->x, location->y - 1}));
     case Direction::SOUTH:
-      if (location->y < Map::HEIGHT - 1) {
-        location->y++;
-        map->moveRobot(*location);
-        return true;
-      }
-      return false;
+      return moveToCell(
+              map->getCell(location),
+              map->getCell(new Location{location->x, location->y + 1}));
     case Direction::EAST:
-      if (location->x < Map::WIDTH - 1) {
-        location->x++;
-        map->moveRobot(*location);
-        return true;
-      }
-      return false;
+      return moveToCell(
+              map->getCell(location),
+              map->getCell(new Location{location->x + 1, location->y}));
     case Direction::WEST:
-      if (location->x > 0) {
-        location->x--;
-        map->moveRobot(*location);
-        return true;
-      }
-      return false;
+      return moveToCell(
+              map->getCell(location),
+              map->getCell(new Location{location->x - 1, location->y}));
     default:
       return false;
   }
@@ -80,4 +69,21 @@ Robot::Direction Robot::charToDirection(char c) {
     default:
       return Direction::NORTH;
   }
+}
+
+bool Robot::moveToCell(MapCell* oldCell, MapCell* newCell) {
+  if (!newCell->occupied() && !newCell->isOutOfBounds()) {
+    if (newCell->hasGold()) {
+      gold++;
+      newCell->removeGold();
+    }
+
+    location->x = newCell->xLocation;
+    location->y = newCell->yLocation;
+    oldCell->vacate();
+    newCell->enter();
+    return true;
+  }
+
+  return false;
 }

@@ -57,18 +57,6 @@ void Map::write() {
   cout << "+--------------------+" << endl;
 }
 
-MapCell* Map::moveRobot(const Robot::Location& location) {
-  removeRobotFromMap();
-
-  return cells[location.x][location.y];
-}
-
-void Map::removeRobotFromMap() {
-  for (int i = 0; i < WIDTH; ++i) {
-    for (int k = 0; k < HEIGHT; ++k) {
-      if (cells[i][k]->isRobot()) {
-        cells[i][k] = new MapCell(i, k, MapCell::CellType::EMPTY);
-      }
-    }
-  }
+MapCell* Map::getCell(Robot::Location* location) {
+  return cells[location->x][location->y];
 }

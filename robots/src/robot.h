@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include "cell.h"
 
 class Map;
 
@@ -38,6 +39,7 @@ public:
   bool move(const std::string& commands);
 private:
   static Direction charToDirection(char c);
+  bool moveToCell(MapCell* oldCell, MapCell* newCell);
 
   int gold;
   Map* map;
