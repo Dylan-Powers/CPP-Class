@@ -24,6 +24,7 @@ public:
   void load();
   // write the full map to cout
   void write();
+  void putRobot(int x, int y);
 
 private:
   MapCell *cells[WIDTH][HEIGHT];

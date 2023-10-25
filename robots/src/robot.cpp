@@ -11,7 +11,9 @@ Robot::Robot(Map* map, int startx, int starty) :
     xLocation(startx),
     yLocation(starty),
     gold(0),
-    map(map) {}
+    map(map) {
+  map->putRobot(xLocation, yLocation);
+}
 
 void Robot::displayStatus() const {
   cout << "Robot at " << xLocation << ", " << yLocation << " ("

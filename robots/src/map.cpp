@@ -21,8 +21,8 @@ void Map::load() {
   getline(cin, line);
   for (int i = 0; i < HEIGHT; i++) {
     getline(cin, line);
-    for (unsigned k = 0; k < line.length(); ++k) {
-      int signed_k = static_cast<int>(k);
+    for (unsigned k = 1; k < line.length(); ++k) {
+      int signed_k = static_cast<int>(k-1);
       char character = line.at(signed_k);
       switch (character) {
         case '#':
@@ -56,4 +56,8 @@ void Map::write() {
     cout << "|" << endl;
   }
   cout << "+--------------------+" << endl;
+}
+
+void Map::putRobot(int x, int y) {
+  cells[x][y]->enter();
 }
