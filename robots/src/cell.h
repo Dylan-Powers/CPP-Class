@@ -32,6 +32,7 @@ public:
   bool hasPit();
   // true if gold at this location
   bool hasGold();
+  bool isRobot() const;
   // remove the gold at this location
   void removeGold();
   // is this location occupied by something that the robot

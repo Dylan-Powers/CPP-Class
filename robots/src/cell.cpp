@@ -28,6 +28,10 @@ bool MapCell::hasGold() {
   return cellType == CellType::GOLD;
 }
 
+bool MapCell::isRobot() const {
+  return hasRobot;
+}
+
 void MapCell::removeGold() {
   cellType = CellType::EMPTY;
 }
