@@ -25,7 +25,7 @@ public:
   void load();
   // write the full map to cout
   void write();
-  void moveRobot(const Robot::Location& location);
+  MapCell* moveRobot(const Robot::Location& location);
 
 private:
   MapCell *cells[WIDTH][HEIGHT];

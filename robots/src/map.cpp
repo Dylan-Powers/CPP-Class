@@ -57,10 +57,10 @@ void Map::write() {
   cout << "+--------------------+" << endl;
 }
 
-void Map::moveRobot(const Robot::Location& location) {
+MapCell* Map::moveRobot(const Robot::Location& location) {
   removeRobotFromMap();
 
-  cells[location.x][location.y]->enter();
+  return cells[location.x][location.y];
 }
 
 void Map::removeRobotFromMap() {
