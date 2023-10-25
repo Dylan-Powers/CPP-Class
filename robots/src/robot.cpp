@@ -12,8 +12,7 @@ Robot::Robot(Map* map, int startx, int starty) :
     location(new Location{startx, starty}),
     gold(0),
     map(map) {
-  MapCell* cell = map->getCell(location);
-  moveToCell(cell, cell);
+  moveToCell(location, location);
 }
 
 void Robot::displayStatus() const {
@@ -25,20 +24,20 @@ bool Robot::move(Direction direction) {
   switch (direction) {
     case Direction::NORTH:
       return moveToCell(
-              map->getCell(location),
-              map->getCell(new Location{location->x, location->y - 1}));
+              location,
+              new Location{location->x, location->y - 1});
     case Direction::SOUTH:
       return moveToCell(
-              map->getCell(location),
-              map->getCell(new Location{location->x, location->y + 1}));
+              location,
+              new Location{location->x, location->y + 1});
     case Direction::EAST:
       return moveToCell(
-              map->getCell(location),
-              map->getCell(new Location{location->x + 1, location->y}));
+              location,
+              new Location{location->x + 1, location->y});
     case Direction::WEST:
       return moveToCell(
-              map->getCell(location),
-              map->getCell(new Location{location->x - 1, location->y}));
+              location,
+              new Location{location->x - 1, location->y});
     default:
       return false;
   }
@@ -57,6 +56,8 @@ bool Robot::move(const string& commands) {
 }
 
 Robot::Direction Robot::charToDirection(char c) {
+  c = tolower(c);
+
   switch (c) {
     case 'n':
       return Direction::NORTH;
@@ -71,8 +72,11 @@ Robot::Direction Robot::charToDirection(char c) {
   }
 }
 
-bool Robot::moveToCell(MapCell* oldCell, MapCell* newCell) {
-  if (!newCell->occupied() && !newCell->isOutOfBounds()) {
+bool Robot::moveToCell(Location* currentLocation, Location* newLocation) {
+  MapCell* currentCell = getNewCell(currentLocation);
+  MapCell* newCell = getNewCell(newLocation);
+
+  if (!newCell->occupied()) {
     if (newCell->hasGold()) {
       gold++;
       newCell->removeGold();
@@ -80,10 +84,25 @@ bool Robot::moveToCell(MapCell* oldCell, MapCell* newCell) {
 
     location->x = newCell->xLocation;
     location->y = newCell->yLocation;
-    oldCell->vacate();
+    currentCell->vacate();
     newCell->enter();
     return true;
   }
 
   return false;
+}
+
+MapCell *Robot::getNewCell(Robot::Location *newLocation) {
+  // Wrap around if the newLocation is out of bounds
+  if (newLocation->x < 0) {
+    newLocation->x = Map::WIDTH - 1;
+  } else if (newLocation->x >= Map::WIDTH) {
+    newLocation->x = 0;
+  } else if (newLocation->y < 0) {
+    newLocation->y = Map::HEIGHT - 1;
+  } else if (newLocation->y >= Map::HEIGHT) {
+    newLocation->y = 0;
+  }
+
+  return map->getCell(newLocation);
 }

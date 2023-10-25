@@ -39,7 +39,8 @@ public:
   bool move(const std::string& commands);
 private:
   static Direction charToDirection(char c);
-  bool moveToCell(MapCell* oldCell, MapCell* newCell);
+  bool moveToCell(Location* currentLocation, Location* newLocation);
+  MapCell* getNewCell(Location* newLocation);
 
   int gold;
   Map* map;
