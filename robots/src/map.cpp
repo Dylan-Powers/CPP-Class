@@ -21,23 +21,22 @@ void Map::load() {
   getline(cin, line);
   for (int i = 0; i < HEIGHT; i++) {
     getline(cin, line);
-    for (unsigned k = 1; k < line.length(); ++k) {
-      int signed_k = static_cast<int>(k-1);
-      char character = line.at(signed_k);
+    for (int k = 0; k < line.length() - 1; ++k) {
+      char character = line.at(k + 1);
       switch (character) {
         case '#':
-          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::PIT);
+          cells[k][i] = new MapCell(k, i, MapCell::CellType::PIT);
           break;
         case '*':
-          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::GOLD);
+          cells[k][i] = new MapCell(k, i, MapCell::CellType::GOLD);
           break;
         case ' ':
-          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::EMPTY);
+          cells[k][i] = new MapCell(k, i, MapCell::CellType::EMPTY);
           break;
         case '|':
           break;
         default:
-          cells[signed_k][i] = new MapCell(signed_k, i, MapCell::CellType::EMPTY, character);
+          cells[k][i] = new MapCell(k, i, MapCell::CellType::EMPTY, character);
           break;
       }
     }
