@@ -25,10 +25,12 @@ public:
   void load();
   // write the full map to cout
   void write();
-  void putRobot(Robot::Location location);
+  void moveRobot(const Robot::Location& location);
 
 private:
   MapCell *cells[WIDTH][HEIGHT];
+
+  void removeRobotFromMap();
 };
 
 #endif /* MAP_H_ */

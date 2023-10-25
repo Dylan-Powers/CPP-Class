@@ -9,27 +9,47 @@
 using namespace std;
 
 Robot::Robot(Map* map, int startx, int starty) :
-    location(*new Location{startx, starty}),
+    location(new Location{startx, starty}),
     gold(0),
     map(map) {
-  map->putRobot(location);
+  map->moveRobot(*location);
 }
 
 void Robot::displayStatus() const {
-  cout << "Robot at " << location.x << ", " << location.y << " ("
+  cout << "Robot at " << location->x << ", " << location->y << " ("
        << gold << " gold)" << endl;
 }
 
 bool Robot::move(Direction direction) {
   switch (direction) {
     case Direction::NORTH:
-      return location.y > 0 && location.y--;
+      if (location->y > 0) {
+        location->y--;
+        map->moveRobot(*location);
+        return true;
+      }
+      return false;
     case Direction::SOUTH:
-      return location.y < Map::HEIGHT - 1 && location.y++;
+      if (location->y < Map::HEIGHT - 1) {
+        location->y++;
+        map->moveRobot(*location);
+        return true;
+      }
+      return false;
     case Direction::EAST:
-      return location.x < Map::WIDTH - 1 && location.x++;
+      if (location->x < Map::WIDTH - 1) {
+        location->x++;
+        map->moveRobot(*location);
+        return true;
+      }
+      return false;
     case Direction::WEST:
-      return location.x > 0 && location.x--;
+      if (location->x > 0) {
+        location->x--;
+        map->moveRobot(*location);
+        return true;
+      }
+      return false;
     default:
       return false;
   }

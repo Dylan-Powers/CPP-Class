@@ -41,7 +41,7 @@ private:
 
   int gold;
   Map* map;
-  Location location;
+  Location* location;
 };
 
 #endif /* ROBOT_H_ */
