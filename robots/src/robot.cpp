@@ -8,34 +8,33 @@
 using namespace std;
 
 Robot::Robot(Map* map, int startx, int starty) :
-    xLocation(startx),
-    yLocation(starty),
+    location(*new Location{startx, starty}),
     gold(0),
     map(map) {
-  map->putRobot(xLocation, yLocation);
+  map->putRobot(location);
 }
 
 void Robot::displayStatus() const {
-  cout << "Robot at " << xLocation << ", " << yLocation << " ("
+  cout << "Robot at " << location.x << ", " << location.y << " ("
        << gold << " gold)" << endl;
 }
 
 bool Robot::move(Direction direction) {
   switch (direction) {
     case Direction::NORTH:
-      return yLocation > 0 && yLocation--;
+      return location.y > 0 && location.y--;
     case Direction::SOUTH:
-      return yLocation < Map::HEIGHT - 1 && yLocation++;
+      return location.y < Map::HEIGHT - 1 && location.y++;
     case Direction::EAST:
-      return xLocation < Map::WIDTH - 1 && xLocation++;
+      return location.x < Map::WIDTH - 1 && location.x++;
     case Direction::WEST:
-      return xLocation > 0 && xLocation--;
+      return location.x > 0 && location.x--;
     default:
       return false;
   }
 }
 
-bool Robot::move(string commands) {
+bool Robot::move(const string& commands) {
   bool ableToComplete = true;
 
   for (char command : commands) {

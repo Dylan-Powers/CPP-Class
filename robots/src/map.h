@@ -8,6 +8,7 @@
 #define MAP_H_
 
 #include "cell.h"
+#include "robot.h"
 #include <iostream>
 
 // Track the area the robot in which the robot moves.
@@ -24,7 +25,7 @@ public:
   void load();
   // write the full map to cout
   void write();
-  void putRobot(int x, int y);
+  void putRobot(Robot::Location location);
 
 private:
   MapCell *cells[WIDTH][HEIGHT];

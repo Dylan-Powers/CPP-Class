@@ -13,6 +13,10 @@
 // A robot which lives on a map at a particular x and y coordinate.
 class Robot {
 public:
+  struct Location {
+    int x, y;
+  };
+
   enum class Direction {
     NORTH = 0,
     SOUTH,
@@ -30,12 +34,13 @@ public:
   bool move(Direction direction);
   // move robot in a series of directions, returning true if was
   //   able to complete the list of directions
-  bool move(std::string commands);
+  bool move(const std::string& commands);
 private:
   static Direction charToDirection(char c);
 
-  int xLocation, yLocation, gold;
+  int gold;
   Map* map;
+  Location location;
 };
 
 #endif /* ROBOT_H_ */

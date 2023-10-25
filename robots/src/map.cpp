@@ -57,6 +57,6 @@ void Map::write() {
   cout << "+--------------------+" << endl;
 }
 
-void Map::putRobot(int x, int y) {
-  cells[x][y]->enter();
+void Map::putRobot(Robot::Location location) {
+  cells[location.x][location.y]->enter();
 }
